@@ -114,7 +114,7 @@ describe XCTasks::TestTask do
           subject.invoke
           @commands.should == ["mkdir -p LayerKit.xcodeproj/xcshareddata/xcschemes",
                                "cp [] LayerKit.xcodeproj/xcshareddata/xcschemes",
-                               "killall \"iPhone Simulator\"",
+                               "killall \"iPhone Simulator\" 2>/dev/null",
                                "/usr/bin/xcodebuild -project LayerKit.xcodeproj -scheme 'Unit Tests' -sdk iphonesimulator clean build test 2> /dev/null | xcpretty -c ; exit ${PIPESTATUS[0]}"]
         end
       end
@@ -161,7 +161,7 @@ describe XCTasks::TestTask do
           subject.invoke
           @commands.should == ["mkdir -p LayerKit.xcworkspace/xcshareddata/xcschemes",
                                "cp [] LayerKit.xcworkspace/xcshareddata/xcschemes",
-                               "killall \"iPhone Simulator\"",
+                               "killall \"iPhone Simulator\" 2>/dev/null",
                                "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator clean build test 2> /dev/null | xcpretty -c ; exit ${PIPESTATUS[0]}"]
         end
       end
@@ -173,7 +173,7 @@ describe XCTasks::TestTask do
           subject.invoke
           @commands.should == ["mkdir -p LayerKit.xcworkspace/xcshareddata/xcschemes",
                                "cp [] LayerKit.xcworkspace/xcshareddata/xcschemes",
-                               "killall \"iPhone Simulator\"",
+                               "killall \"iPhone Simulator\" 2>/dev/null",
                                "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Functional Tests' -sdk iphonesimulator clean build test 2> /dev/null | xcpretty -c ; exit ${PIPESTATUS[0]}"]
         end
       end
@@ -199,7 +199,7 @@ describe XCTasks::TestTask do
           subject.invoke
           @commands.should == ["mkdir -p LayerKit.xcworkspace/xcshareddata/xcschemes",
                                "cp [] LayerKit.xcworkspace/xcshareddata/xcschemes",
-                               "killall \"iPhone Simulator\"",
+                               "killall \"iPhone Simulator\" 2>/dev/null",
                                "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator clean build test | tee -a output.log | xcpretty -s ; exit ${PIPESTATUS[0]}"]
         end
       end
@@ -211,7 +211,7 @@ describe XCTasks::TestTask do
           subject.invoke
           @commands.should == ["mkdir -p LayerKit.xcworkspace/xcshareddata/xcschemes",
                                "cp [] LayerKit.xcworkspace/xcshareddata/xcschemes",
-                               "killall \"iPhone Simulator\"",
+                               "killall \"iPhone Simulator\" 2>/dev/null",
                                "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Functional Tests' -sdk iphonesimulator clean build test | tee -a output.log | xcpretty -s ; exit ${PIPESTATUS[0]}"]
         end
       end
@@ -304,9 +304,9 @@ describe XCTasks::TestTask do
         it "executes the appropriate commands" do
           subject.invoke
           @commands.should == [
-            "killall \"iPhone Simulator\"",
+            "killall \"iPhone Simulator\" 2>/dev/null",
             "/usr/local/bin/xctool -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator7.0 clean build test",
-            "killall \"iPhone Simulator\"",
+            "killall \"iPhone Simulator\" 2>/dev/null",
             "/usr/local/bin/xctool -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator7.1 clean build test"
           ]
         end
@@ -318,7 +318,7 @@ describe XCTasks::TestTask do
         it "executes the appropriate commands" do
           subject.invoke
           @commands.should == [
-            "killall \"iPhone Simulator\"",
+            "killall \"iPhone Simulator\" 2>/dev/null",
             "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Functional Tests' -sdk iphonesimulator clean build test"
           ]
         end
@@ -357,9 +357,9 @@ describe XCTasks::TestTask do
       it "executes the appropriate commands" do
         subject.invoke
         @commands.should == [
-          "killall \"iPhone Simulator\"",
+          "killall \"iPhone Simulator\" 2>/dev/null",
           "/usr/local/bin/xctool -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator7.0 clean build test",
-          "killall \"iPhone Simulator\"",
+          "killall \"iPhone Simulator\" 2>/dev/null",
           "/usr/local/bin/xctool -workspace LayerKit.xcworkspace -scheme 'Unit Tests' -sdk iphonesimulator7.1 clean build test"
         ]
       end
@@ -371,7 +371,7 @@ describe XCTasks::TestTask do
       it "executes the appropriate commands" do
         subject.invoke
         @commands.should == [
-          "killall \"iPhone Simulator\"",
+          "killall \"iPhone Simulator\" 2>/dev/null",
           "/usr/bin/xcodebuild -workspace LayerKit.xcworkspace -scheme 'Functional Tests' -sdk iphonesimulator -destination platform='iOS Simulator',name='iPad Retina',OS='latest' -destination platform\\=iOS\\ Simulator,OS\\=7.1,name\\=iPhone\\ Retina\\ \\(4-inch\\) -destination platform='iOS',id='437750527b43cff55a46f42ae86dbf870c7591b1' clean build test 2> stderr.log"]
       end
     end

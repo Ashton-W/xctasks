@@ -237,7 +237,7 @@ module XCTasks
 
       def run_tests(options = {})
         ios_version = options[:ios_version]
-        XCTasks::Command.run(%q{killall "iPhone Simulator"}, false) if sdk == :iphonesimulator
+        XCTasks::Command.run(%q{killall "iPhone Simulator" 2>/dev/null}, false) if sdk == :iphonesimulator
 
         target = workspace ? "-workspace #{workspace}" : "-project #{project}"
 
